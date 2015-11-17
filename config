@@ -1,0 +1,29 @@
+ServerName localhost
+<VirtualHost *:80>
+   ServerName localhost
+   ServerAdmin root@localhost
+   Alias /shibboleth-sp/ /usr/share/shibboleth
+   <Location "/Shibboleth.sso">
+       SetHandler default-handler
+   </Location>
+   <Directory /usr/share/shibboleth>
+       Order deny,allow
+       Allow from all
+   </Directory>
+   <Location "/">
+       Order deny,allow
+       Allow from all
+   </Location>
+   <Location "/login">
+       AuthType shibboleth
+       ShibRequireSession On
+       require valid-user
+   </Location>
+   ErrorLog ${APACHE_LOG_DIR}/error.log
+   LogLevel warn
+   CustomLog ${APACHE_LOG_DIR}/ssl_access.log combined
+   AddDefaultCharset utf-8
+   ProxyPass /Shibboleth.sso !
+   ProxyPass /shibboleth-sp !
+   ProxyPreserveHost On
+</VirtualHost>
