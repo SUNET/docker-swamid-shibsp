@@ -6,6 +6,7 @@ RUN a2enmod rewrite
 RUN a2enmod shib2
 RUN a2enmod proxy
 RUN a2enmod proxy_http
+RUN a2enmod ssl
 ENV SP_HOSTNAME localhost
 ENV SP_CONTACT root@localhost
 ENV SP_ABOUT /about
