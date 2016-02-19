@@ -1,6 +1,7 @@
 FROM ubuntu
 MAINTAINER leifj@sunet.se
-RUN apt-get update
+RUN apt-get -q update
+RUN apt-get -y upgrade
 RUN apt-get -y install apache2 libapache2-mod-shib2 ssl-cert augeas-tools
 RUN a2enmod rewrite
 RUN a2enmod shib2
