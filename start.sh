@@ -18,9 +18,12 @@ if ["x${DEFAULT_LOGIN}" = "x" ]; then
    DEFAULT_LOGIN="md.nordu.net" 
 fi
 
-KEYDIR=/etc/ssl
-mkdir -p $KEYDIR
-export KEYDIR
+if [ -z "$KEYDIR" ]; then
+   KEYDIR=/etc/ssl
+   mkdir -p $KEYDIR
+   export KEYDIR
+fi
+
 if [ ! -f "$KEYDIR/private/shibsp-${SP_HOSTNAME}.key" -o ! -f "$KEYDIR/certs/shibsp-${SP_HOSTNAME}.crt" ]; then
    shib-keygen -o /tmp -h $SP_HOSTNAME 2>/dev/null
    mv /tmp/sp-key.pem "$KEYDIR/private/shibsp-${SP_HOSTNAME}.key"
