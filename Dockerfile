@@ -1,5 +1,6 @@
 FROM ubuntu
 MAINTAINER leifj@sunet.se
+ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get -q update
 RUN apt-get -y upgrade
 RUN apt-get -y install apache2 libapache2-mod-shib2 ssl-cert augeas-tools
