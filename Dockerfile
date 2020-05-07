@@ -1,10 +1,11 @@
 FROM ubuntu
 MAINTAINER leifj@sunet.se
+ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get -q update
 RUN apt-get -y upgrade
 RUN apt-get -y install apache2 libapache2-mod-shib2 ssl-cert augeas-tools
 RUN a2enmod rewrite
-RUN a2enmod shib2
+RUN a2enmod shib
 RUN a2enmod proxy
 RUN a2enmod proxy_http
 RUN a2enmod ssl
